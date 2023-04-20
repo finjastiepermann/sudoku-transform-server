@@ -34,6 +34,7 @@ class Sudoku {
             acc_o + ln.fold("") { acc_i : String, n -> acc_i + n + " "} + "\n"
         };
     }
+
     override fun toString(): String {
         return field.toString();
     }
