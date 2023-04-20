@@ -6,6 +6,10 @@ import java.util.stream.Collectors
 import kotlin.streams.asStream
 import kotlin.system.measureTimeMillis
 import kotlinx.coroutines.*
+import java.lang.Runnable
+import java.util.concurrent.Callable
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
 
 fun main(args: Array<String>) {
@@ -64,14 +68,17 @@ fun benchGenerate() {
     }
 
     timePar = measureTimeMillis {
-        runBlocking {
-            (1..120).map {
-                async {
-                    SudokuToOnePar();
-                    SudokuToOnePar();
-                }
-            }.awaitAll();
+        val actions : MutableList<Runnable> = ArrayList();
+        repeat(120) {
+            actions.add() {
+                SudokuToOneSeq();
+                SudokuToOneSeq();
+            }
         }
+
+        actions.parallelStream()
+            .map { r : Runnable  -> r.run(); }
+            .collect(Collectors.toList());
     }
 
     println("Time Sequential: ${timeSeq}")
