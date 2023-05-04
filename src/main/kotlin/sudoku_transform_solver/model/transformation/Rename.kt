@@ -10,6 +10,6 @@ class Rename(private var symbol1: Int, private var symbol2: Int) : Transformatio
     }
 
     override fun toString(): String {
-        TODO("Not yet implemented")
+        return "Renamed $symbol1 to $symbol2 and v.v."
     }
 }

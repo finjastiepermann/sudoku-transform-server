@@ -10,6 +10,6 @@ class SwitchBlockRow(private var row1: Int, private var row2: Int) : Transformat
     }
 
     override fun toString(): String {
-        TODO("Not yet implemented")
+        return "Switched block rows $row1 and $row2."
     }
 }

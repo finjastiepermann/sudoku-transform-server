@@ -10,6 +10,6 @@ class SwitchRow(s: Sudoku, private var row1: Int, private var row2: Int) : Trans
     }
 
     override fun toString(): String {
-        TODO("Not yet implemented")
+        return "Switched rows $row1 and $row2."
     }
 }

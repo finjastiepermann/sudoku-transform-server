@@ -12,6 +12,6 @@ class SwitchColumn(column1: Int, column2: Int) : Transformation{
     }
 
     override fun toString(): String {
-        TODO("Not yet implemented")
+        return "Switched columns $col1 and $col2."
     }
 }

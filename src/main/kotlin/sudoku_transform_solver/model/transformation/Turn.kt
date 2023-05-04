@@ -8,6 +8,6 @@ class Turn(private val dir : Direction) : Transformation {
     override fun apply(s : Sudoku) : Sudoku = TURN(s, dir);
 
     override fun toString(): String {
-        TODO("Not yet implemented")
+        return "Turned 90° to the ${if (dir == Direction.LEFT) "left" else "right"}"
     }
 }

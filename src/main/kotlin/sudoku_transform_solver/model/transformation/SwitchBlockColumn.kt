@@ -13,6 +13,6 @@ class SwitchBlockColumn(column1: Int, column2: Int) : Transformation {
     }
 
     override fun toString(): String {
-        TODO("Not yet implemented")
+        return "Switched block columns $col1 and $col2."
     }
 }
