@@ -5,15 +5,15 @@ class Graph<T, U>(private val hashFunction : (c : T) -> Int) {
     private val verts : MutableMap<Int, Vertex<T, U>> = HashMap();
 
     /**
-     * Add vertex from content.
+     * Add vertex from content (if not exists).
      */
     fun add(c : T) : T {
-        val present = verts.get(hashFunction(c));
-        if(present != null) return present.content;
+        val present = verts[hashFunction(c)];
+        return if(present != null) present.content;
         else {
             val v = Vertex<T, U>(c, hashFunction);
-            verts.set(v.hash, v);
-            return c;
+            verts[v.hash] = v;
+            c;
         }
     }
 
@@ -35,7 +35,7 @@ class Graph<T, U>(private val hashFunction : (c : T) -> Int) {
      * Find vertex by content and return contents of its adjacent vertices (paired with connected edge properties)
      */
     fun getAdj(c : T) : List<Pair<T, U?>>? {
-        return verts.get(hashFunction(c))?.adj?.map { e -> Pair(e.first.content, e.second) };
+        return verts[hashFunction(c)]?.adj?.map { e -> Pair(e.first.content, e.second) };
     }
 
     /**
@@ -43,8 +43,8 @@ class Graph<T, U>(private val hashFunction : (c : T) -> Int) {
      * Return false if one or both vertices don't exist within the graph.
      */
     fun connect(c1 : T, c2 : T, egdeProperty : U?, directional : Boolean = false) : Boolean {
-        val v1 = verts.get(hashFunction(c1));
-        val v2 = verts.get(hashFunction(c2));
+        val v1 = verts[hashFunction(c1)];
+        val v2 = verts[hashFunction(c2)];
 
         if(v1 == null || v2 == null) return false;
 
